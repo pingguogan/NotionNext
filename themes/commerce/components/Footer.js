@@ -216,7 +216,7 @@ const Footer = props => {
           </div>
 
           {/* 右边公司名字 */}
-          <div className='text-center'>
+          <div className='md:text-right'>
             <h1 className='text-xs pt-4 text-light-400 dark:text-gray-400'>
               {siteConfig('TITLE')} {siteConfig('BIO')}
             </h1>
