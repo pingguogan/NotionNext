@@ -1,21 +1,16 @@
-// 这里编写自定义js脚本；将被静态引入到页面中
-// 动态修改 APlayer 的底部位置
+// 等待播放器加载并调整样式
 function adjustAPlayerPosition() {
   const player = document.querySelector('.aplayer.aplayer-fixed');
   if (player) {
     player.style.bottom = '60px';
-    player.style.zIndex = '999'; // 确保播放器在其他元素之上
+    player.style.zIndex = '999'; // 确保播放器不被其他元素遮挡
+  } else {
+    // 如果找不到播放器，持续检查直到找到
+    setTimeout(adjustAPlayerPosition, 100); // 每 100ms 检查一次
   }
 }
 
-// 在页面加载时执行
-window.addEventListener('load', adjustAPlayerPosition);
-
-// 如果你需要在播放器初始化后立即调整（如 APlayer 被加载时），可以使用如下方法：
-const interval = setInterval(() => {
-  const player = document.querySelector('.aplayer.aplayer-fixed');
-  if (player) {
-    adjustAPlayerPosition();
-    clearInterval(interval); // 找到播放器后停止查找
-  }
-}, 100); // 每100毫秒检查一次
+// 页面加载后执行
+window.addEventListener('load', () => {
+  adjustAPlayerPosition();
+});
